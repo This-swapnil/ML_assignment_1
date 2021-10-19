@@ -7,5 +7,4 @@ pandas-profiling==3.0.0
 scikit-learn 
 scipy 
 seaborn
-pickle
 statsmodels
