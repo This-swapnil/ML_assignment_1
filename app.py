@@ -18,28 +18,27 @@ def Home():
 @cross_origin()
 def predict():
     if request.method == "POST":
-        pt = float(request.form['pt'])
-        rt = int(request.form['RT'])
-        Torque = float(request.form['Torque'])
-        tool = int(request.form['TW'])
-        twf = int(request.form['TWF'])
-        hdf = int(request.form['HDF'])
-        pwf = int(request.form['PWF'])
-        osf = int(request.form['OSF'])
-        rnf = int(request.form['RNF'])
-
-        result = model.predict(
-            [[pt, rt, Torque, tool, twf, hdf, pwf, osf, rnf]])[0]
-        return render_template('result.html', result=result)
-    else:
-        return render_template('index.html')
-
-
-@app.route('/profile', methods=["POST", "GET"])
-@cross_origin()
-def report():
-    return render_template('report.html')
+        try:
+            data_req = dict(request.form)
+            print(data_req)
+            data = data_req.values()
+            data = [list(map(float,data))]
+            print(data)
+            scaled = saved_scaler.transform(data)
+            print(scaled)
+            response = model.predict(scaled)
+            print(response)
+            return render_template('result.html', result=response[0])
+        except Exception as e:
+            error = {'error': e}
+            print(error)
+            return render_template('404.html', error=error)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+# [-0.41978194,  0.28482986, -1.2879095 , -0.27259857, -0.14421743,
+#         0.41367189, -0.12001342,  0.1402136 , -0.98284286, -0.66660821,
+#        -1.45900038,  0.44105193, -1.0755623 ]

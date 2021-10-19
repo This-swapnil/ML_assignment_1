@@ -5,52 +5,107 @@
 
     /*==================================================================
     [ Focus Contact2 ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
+    $('.input100').each(function () {
+        $(this).on('blur', function () {
+            if ($(this).val().trim() != "") {
                 $(this).addClass('has-val');
             }
             else {
                 $(this).removeClass('has-val');
             }
-        })    
+        })
     })
-  
-  
+
+
     /*==================================================================
     [ Validate ]*/
-    var name = $('.validate-input input[name="name"]');
-    var email = $('.validate-input input[name="email"]');
-    var message = $('.validate-input textarea[name="message"]');
+    var CRIM = $('.validate-input input[name="CRIM"]');
+    var ZN = $('.validate-input input[name="ZN"]');
+    var INDUS = $('.validate-input input[name="INDUS"]');
+    var CHAS = $('.validate-input input[name="CHAS"]');
+    var NOX = $('.validate-input input[name="NOX"]');
+    var RM = $('.validate-input input[name="RM"]');
+    var AGE = $('.validate-input input[name="AGE"]');
+    var DIS = $('.validate-input input[name="DIS"]');
+    var RAD = $('.validate-input input[name="RAD"]');
+    var TAX = $('.validate-input input[name="TAX"]');
+    var B = $('.validate-input input[name="B"]');
+    var LSTAT = $('.validate-input input[name="LSTAT"]');
 
 
-    $('.validate-form').on('submit',function(){
+    $('.validate-form').on('submit', function () {
         var check = true;
 
-        if($(name).val().trim() == ''){
-            showValidate(name);
-            check=false;
+        if ($(CRIM).val().trim() == '') {
+            showValidate(CRIM);
+            check = false;
         }
 
-
-        if($(email).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-            showValidate(email);
-            check=false;
+        if ($(ZN).val().trim() == '') {
+            showValidate(ZN);
+            check = false;
         }
 
-        if($(message).val().trim() == ''){
+        if ($(INDUS).val().trim() == '') {
+            showValidate(INDUS);
+            check = false;
+        }
+
+        if ($(CHAS).val().trim() == '') {
+            showValidate(CHAS);
+            check = false;
+        }
+
+        if ($(NOX).val().trim() == '') {
+            showValidate(NOX);
+            check = false;
+        }
+
+        if ($(RM).val().trim() == '') {
+            showValidate(RM);
+            check = false;
+        }
+
+        if ($(AGE).val().trim() == '') {
+            showValidate(AGE);
+            check = false;
+        }
+
+        if ($(DIS).val().trim() == '') {
+            showValidate(DIS);
+            check = false;
+        }
+
+        if ($(RAD).val().trim() == '') {
+            showValidate(RAD);
+            check = false;
+        }
+
+        if ($(TAX).val().trim() == '') {
+            showValidate(TAX);
+            check = false;
+        }
+
+        if ($(B).val().trim() == '') {
             showValidate(message);
-            check=false;
+            check = false;
         }
+
+        if ($(LSTAT).val().trim() == '') {
+            showValidate(LSTAT);
+            check = false;
+        }
+
+
 
         return check;
     });
 
 
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
-       });
+    $('.validate-form .input100').each(function () {
+        $(this).focus(function () {
+            hideValidate(this);
+        });
     });
 
     function showValidate(input) {
@@ -64,7 +119,7 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
-    
+
+
 
 })(jQuery);
